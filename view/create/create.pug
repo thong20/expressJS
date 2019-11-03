@@ -1,0 +1,16 @@
+
+//- create.pug
+extends ../layouts/common.pug
+
+block content
+    h1 Create
+    form(action="/user/create" method="POST")
+        div.form-group
+            label Name
+            input(name="name" type="text" class="form-control col-3")
+            label Phone
+            input(name="phone" type="text" class="form-control col-3")
+            button(class="btn btn-primary mt-2" aria-pressed="false") Create
+    a(href="/user") < Back
+
+    
