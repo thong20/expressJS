@@ -4,16 +4,27 @@ extends ../layouts/common.pug
 
 block content
     h1 User Page
-    a(href="/user/create") + New
-    form(action="/user/search" method="GET")
-        input(name="q" type="text")
-        button Search
-    ul
-        each value in danhSach
-            li=value.name
-            span=value.phone
-            a(href="/user/" + value.id)  | View detail
-            a(href="/user/delete/" + value.id)  | Delete
-    a(href="/") < Back
+        a.btn.btn-primary.ml-2(href='/user/create') + New
+    .d-flex.align-item-center
+        form.ml-auto.mr-5(action='/user/search', method='GET')
+            input(name='q', type='text')
+            button Search
+    table.table.mx-auto(style="width: 90%")
+        thead
+            tr
+                th(scope='col') Id
+                th(scope='col') Name
+                th(scope='col') Phone
+                th(scope='col') Actions
+            each value in danhSach
+                tr
+                    td=value.id
+                    td=value.name
+                    td=value.phone
+                    td
+                        a(href="/user/" + value.id) View
+    a.btn.btn-secondary.ml-5(href='/')
+        | &lt; Back
+
 
 
