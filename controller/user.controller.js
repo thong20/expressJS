@@ -32,8 +32,29 @@ module.exports.userDetail = function(req, res){
 
 module.exports.createNew = function(req, res){
     req.body.id = shortid.generate();
-    db.get('userList').push(req.body).write();
-    res.redirect('/');
+    var errors = [];
+    if(!req.body.name) errors.push("Name is required");
+    if(!req.body.phone) errors.push("Phone is required");
+    if(errors.length){
+        res.render("./create/create.pug",
+            {
+                errors: errors,
+                value: req.body 
+            }
+        );
+        console.log(errors);
+        return;
+    }else{
+        db.get('userList').push(req.body).write();
+        res.redirect('/user');  // Chuyển hướng tới url localhost:3000/user
+                                // Do ta đã định nghĩa ở trên là: nếu đường dẫn là
+                                // localhost:3000/user sẽ res.render('./user/user.pug') (xem
+                                // lại code ở phía trên hoặc bài 02-template-enginer)
+                                // Giả sử: nếu ta định nghĩa localhost:3000//user sẽ
+                                // res.render('./user/detail.pug') thì khi ta res.redirect('/user')
+                                // nó sẽ chuyển hướng tới trang user/detail.pug
+    }
+  
 };
 
 module.exports.removeUser = function(req, res){

@@ -9,7 +9,7 @@ router.get('/', controller.index);
 
 router.get('/search', controller.search);
 
-router.get('/create', controller.createPage);
+router.get('/create/', controller.createPage);
 
 router.get('/:idUser', controller.userDetail);
 router.get('/delete/:idUser', controller.removeUser);
