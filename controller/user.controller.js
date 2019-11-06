@@ -1,7 +1,7 @@
 var db = require('../db.js');
 var shortid = require('shortid');
 
-module.exports.index = function(req, res){
+module.exports.index1 = function(req, res){
     res.render('./user/user.pug',
         {danhSach: db.get('userList').value()}
     );
@@ -12,7 +12,7 @@ module.exports.search = function(req, res){
     var matchedUser = db.get('userList').filter(function(x){
          return x.name.indexOf(q) !== -1;
     });
-    res.render('./user/user.pug',{
+    res.render('./user/detail.pug',{
         danhSach: matchedUser.value()
     });
 };
@@ -32,28 +32,20 @@ module.exports.userDetail = function(req, res){
 
 module.exports.createNew = function(req, res){
     req.body.id = shortid.generate();
-    var errors = [];
-    if(!req.body.name) errors.push("Name is required");
-    if(!req.body.phone) errors.push("Phone is required");
-    if(errors.length){
-        res.render("./create/create.pug",
-            {
-                errors: errors,
-                value: req.body 
-            }
-        );
-        console.log(errors);
-        return;
-    }else{
-        db.get('userList').push(req.body).write();
-        res.redirect('/user');  // Chuyển hướng tới url localhost:3000/user
-                                // Do ta đã định nghĩa ở trên là: nếu đường dẫn là
-                                // localhost:3000/user sẽ res.render('./user/user.pug') (xem
-                                // lại code ở phía trên hoặc bài 02-template-enginer)
-                                // Giả sử: nếu ta định nghĩa localhost:3000//user sẽ
-                                // res.render('./user/detail.pug') thì khi ta res.redirect('/user')
-                                // nó sẽ chuyển hướng tới trang user/detail.pug
-    }
+    
+    db.get('userList').push(req.body).write();
+    res.redirect('/user');  // Phải là đường dẫn tuyệt đối đến folder
+                            // Nghĩa là: chuyển hướng tới url localhost:3000/user
+                            // Do ta đã định nghĩa ở trên:
+                            //   module.export.index sẽ render trang user.pug
+                            //   res.render('./user/user.pug')
+                            // (xem lại code ở phía trên hoặc bài 02-template-enginer)
+                            // Giả sử: nếu ta định nghĩa:
+                            //   module.export.index sẽ render trang detail.pug
+                            //   res.render('./user/detail.pug')
+                            //   thì khi ta redirect('/user')
+                            //   nó sẽ chuyển hướng tới trang user/detail.pug
+    
   
 };
 
@@ -65,3 +57,7 @@ module.exports.removeUser = function(req, res){
         danhSach: db.get('userList').value()
     });
 };
+
+
+
+

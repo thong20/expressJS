@@ -1,34 +1,16 @@
 {
   "userList": [
     {
-      "name": "bvcbx",
-      "phone": "345345345",
-      "id": "c9z8cNcB"
+      "name": "thong20",
+      "phone": "0934",
+      "id": "ZGL-DcQ4"
     },
     {
-      "name": "ytytyty",
-      "phone": "343434",
-      "id": "A2XryytT"
-    },
-    {
-      "name": "asdasdasd",
-      "phone": "9989090",
-      "id": "q67FQPnv"
-    },
-    {
-      "name": "456456",
-      "phone": "6678678",
-      "id": "9XibenKi"
-    },
-    {
-      "name": "bfg",
-      "phone": "67878",
-      "id": "31ivPGq5"
-    },
-    {
-      "name": "tryer67",
-      "phone": "57567566",
-      "id": "PrUU79jg"
+      "name": "thong20b",
+      "phone": "7777777",
+      "id": "VNRQ1riF",
+      "email": "minhphong1515@gmail.com",
+      "password": "1122"
     }
   ]
 }
