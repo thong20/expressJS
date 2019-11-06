@@ -2,7 +2,7 @@ var db = require("../db.js");
 
 module.exports.requireAuth = function(req, res, next){
     console.log(req.cookies);
-    if(!req.cookies.userId){
+    if(!req.cookies.userId){ // gonna install cookie-parser
         res.redirect('/auth/login');
         return;
     };
