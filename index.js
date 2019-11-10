@@ -7,6 +7,7 @@ var port = 3000;
 var cookieParser = require('cookie-parser');
 
 var db = require('./db.js');
+
 var userRouter = require('./routers/user.route.js');
 var authRouter = require('./routers/auth.route.js');
 
@@ -15,7 +16,7 @@ app.set('view engine', 'pug');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cookieParser());
+app.use(cookieParser('asdasdgsdf987988'));
 
 app.get('/', function(req, res){
     res.render('index.pug',

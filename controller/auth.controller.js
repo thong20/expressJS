@@ -1,4 +1,5 @@
 var db = require('../db.js');
+var md5 = require('md5');
 
 module.exports.loginPage = function(req, res){
     
@@ -6,7 +7,7 @@ module.exports.loginPage = function(req, res){
 }
 
 module.exports.postLogin = function(req, res){
-    // /email=xxx&pass=***
+    //  email=xxx&pass=***
     var email = req.body.email;
     var password = req.body.password;
 
@@ -15,14 +16,14 @@ module.exports.postLogin = function(req, res){
     if(!user){
         res.render('./auth/login.pug',
             {
-                errors: ['User does not exist'],
+                errors: ['Email does not exist'],
                 values: req.body
             }
         );
         return;
     }
-
-    if(password !== user.password){
+    var md5Password = md5(password);
+    if(md5Password !== user.password){
         res.render('./auth/login.pug',
             {
                 errors: ['Wrong password!'],
@@ -31,7 +32,11 @@ module.exports.postLogin = function(req, res){
         );
         return;
     }
-    res.cookie('userId', user.id);
+    res.cookie('userId', user.id,
+        {
+            signed: true
+        }
+    );
     res.redirect('/user');
 
 }
