@@ -10,13 +10,14 @@ var db = require('./db.js');
 
 var userRouter = require('./routers/user.route.js');
 var authRouter = require('./routers/auth.route.js');
+var productsRouter = require('./routers/products.route.js');
 
 app.set('views', './view');
 app.set('view engine', 'pug');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cookieParser('asdasdgsdf987988'));
+app.use(cookieParser());
 
 app.get('/', function(req, res){
     res.render('index.pug',
@@ -26,6 +27,7 @@ app.get('/', function(req, res){
 
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
+app.use('/products', productsRouter);
 
 app.listen(port, function(){
     console.log("Server start in port", port);

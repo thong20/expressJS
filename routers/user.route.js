@@ -6,7 +6,7 @@ var controller = require("../controller/user.controller");
 var validate = require("../validate/user.validate");
 var middleware = require("../middlewares/auth.middleware");
 
-router.get('/', middleware.requireAuth, controller.index1);
+router.get('/', middleware.requireAuth, controller.index);
 
 router.get('/search', controller.search);
 

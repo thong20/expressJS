@@ -1,7 +1,7 @@
 var db = require('../db.js');
 var shortid = require('shortid');
 
-module.exports.index1 = function(req, res){
+module.exports.index = function(req, res){
     res.render('./user/user.pug',
         {danhSach: db.get('userList').value()}
     );
